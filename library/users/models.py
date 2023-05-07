@@ -7,7 +7,7 @@ from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin
 from django.utils import timezone
 
 
-class Role(models.IntegerChoices):
+class UserRole(models.IntegerChoices):
     LIBRARIAN = 1
     MEMBER = 2
 
@@ -48,7 +48,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     email = models.EmailField(_("email address"), unique=True)
     first_name = models.CharField(_("First Name"),max_length=50)
     last_name = models.CharField(_("Last Name"),max_length=50,blank=True,null=True)
-    role = models.IntegerField(_("Role"),choices=Role.choices,default=Role.MEMBER)
+    role = models.IntegerField(_("Role"),choices=UserRole.choices,default=UserRole.MEMBER)
     is_staff = models.BooleanField(_("Is staff user"),default=False)
     is_active = models.BooleanField(_("Is active ?"),default=True)
     created_at = models.DateTimeField(editable=False)
@@ -68,4 +68,4 @@ class User(AbstractBaseUser, PermissionsMixin):
     objects = UserManager()
 
     def __str__(self):
-        return self.email
+        return f"{self.id} - {self.email}"
