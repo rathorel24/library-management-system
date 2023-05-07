@@ -1,0 +1,68 @@
+
+{% block content %}
+
+  <div class="container">
+    <div class="row">
+      <div class="col-md-8 offset-md-2">
+        <h1 class="text-center mt-5">Welcome to Awesome Library, {{ user.username }}!</h1>
+        <p class="lead">Here's some information about your account:</p>
+        <ul class="list-group mb-5">
+          <li class="list-group-item"><strong>Email:</strong> {{ user.email }}</li>
+          <li class="list-group-item"><strong>First Name:</strong> {{ user.first_name }}</li>
+          <li class="list-group-item"><strong>Last Name:</strong> {{ user.last_name }}</li>
+          <li class="list-group-item"><strong>Role:</strong> {{ user.get_role_display }}</li>
+        </ul>
+        <p class="lead">Here's some information Books issued to You:</p>
+        <ul class="list-group mb-5"><strong>Borrowed Books:</strong> 
+            {% for book_inventory in  user.borrowed_books.all %}
+            <ul class="list-group mb-4"><strong>Book Id: : {{ book_inventory.book.id }} </strong> 
+                <li class="list-group-item">Name:  {{ book_inventory.book.name }}</li>
+                <li class="list-group-item">Author: {{ book_inventory.book.author }}</li>
+            </ul>
+            {% endfor %}
+        </ul>
+        <div class="center">
+        <p><a href="{% url 'logout' %}" class="btn btn-danger">Log Out</a></p>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}
+
+{% block styles %}
+  <style>
+    .container {
+      max-width: 800px;
+    }
+    
+    h1 {
+      font-size: 3em;
+      color: #0062cc;
+    }
+    
+    p {
+      font-size: 1.5em;
+      margin-bottom: 1em;
+    }
+    
+    .list-group-item {
+      font-size: 1.2em;
+      padding: 0.75em;
+      border: none;
+    }
+    
+    .list-group-item:first-child {
+      border-top-left-radius: 0.25rem;
+      border-top-right-radius: 0.25rem;
+    }
+    
+    .list-group-item:last-child {
+      border-bottom-left-radius: 0.25rem;
+      border-bottom-right-radius: 0.25rem;
+    }
+    .center {
+        text-align: center;
+        
+      }
+  </style>
+{% endblock %}

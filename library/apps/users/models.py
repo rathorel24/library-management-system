@@ -8,8 +8,8 @@ from django.utils import timezone
 
 
 class UserRole(models.IntegerChoices):
-    LIBRARIAN = 1
-    MEMBER = 2
+    LIBRARIAN = 1, "LIBRARIAN"
+    MEMBER = 2, "MEMBER"
 
     
 class UserManager(BaseUserManager):
