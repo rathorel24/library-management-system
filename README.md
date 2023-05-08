@@ -10,6 +10,7 @@ To get started with the Library Management System, follow these steps:
 2. Navigate to the project directory: `cd library/`
 3. Install the required dependencies: `pip install -r requirements.txt`
 4. Run the project: `python manage.py runserver`
+--> pyhton manage.py createsuperuser -- Create super user to login on Admin panel
 5. Open your web browser and go to http://localhost:8000/register/ To create your account
 6. Open your web browser and go to http://localhost:8000/login/ For login
 
